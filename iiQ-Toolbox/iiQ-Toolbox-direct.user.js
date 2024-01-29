@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.5
+// @version      1.1.6
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -88,16 +88,14 @@ class="" & id="" - I use to denote blocks, id for everything else
       <passive class="menu--inner-gui-block">
         <passive id="menu--inner-gui-block-text">
         <!-- Input Kundennummer-->
-        <form><label for="Kundennummer">Kundennummer:</label><input type="form" style="color:#000000" id="Kundennummer">
+        <form><label for="Kundennummer">Kundennummer:</label><input type="form" style="color:#000000" id="input_Kundennummer">
         <!--Submit-Button mit öffentl. Link -->
         <br/>
-        <input type="Submit" value="Öff. Link" id="public_link" href="https://app.iiq-check.de/{Kundennummer}>
-
-
-
-
         </form>
+        <a id="public_link">Öffentl. Link</a>
+        <a href="javascript:void(0)" onclick="openUrl(id)">link</a>
         </passive>
+
 
       </passive>
     </main>
@@ -197,6 +195,17 @@ cursor: pointer;
 
 let js = `
 <script>
+<!--// Öffentlicher Link
+(function(public_link) {
+    var id = document.getElementById('input_Kundennummer');
+    var public_prefix = "https://app.iiq-check.de/";
+    document.getElementById("public_link").setAttribute("href", public_prefix += id);
+})();-->
+function openUrl(id)
+{
+ window.location = "http://localhost/"+id
+}
+
 
 // If you click outside of the menu location
 $(document).mouseup(function (e) {
