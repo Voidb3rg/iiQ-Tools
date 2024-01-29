@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.3
+// @version      1.1.4
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -87,7 +87,15 @@ class="" & id="" - I use to denote blocks, id for everything else
     <main class="menu--inner-gui">
       <passive class="menu--inner-gui-block">
         <passive id="menu--inner-gui-block-text">
-        <form><label for="Kundennummer">Kundennummer:</label><input type="form" style="color:#000000" id="Kundennummer"></form>
+        // Input Kundennummer
+        <form><label for="Kundennummer">Kundennummer:</label><input type="form" style="color:#000000" id="Kundennummer">
+        //Submit-Button mit öffentl. Link 
+        <input type="Submit" value="Öff. Link" id="public_link" href="https://app.iiq-check.de/{Kundennummer}>
+
+
+
+
+        </form>
         </passive>
 
       </passive>
