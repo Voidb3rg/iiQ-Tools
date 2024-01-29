@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.7.3
+// @version      1.1.7.4
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -93,7 +93,7 @@ class="" & id="" - I use to denote blocks, id for everything else
         <br/>
         </form>
         <a id="public_link">Öffentl. Link</a>
-        <a href="javascript:void(0)" onclick="openUrl(input_Kundennummer)">link</a>
+        <a href="javascript:void(0)" onclick="openUrl(window.location)">link</a>
         </passive>
 
 
