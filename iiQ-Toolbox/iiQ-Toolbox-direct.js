@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Menu template for your script
+// @name         iiQ-Toolbox
 // @namespace    none
 // @version      1
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
@@ -7,8 +7,8 @@
 // @match        https://app.iiq-check.de/*
 // @match        *://moomoo.io/*
 // @grant        none
-// @downloadURL https://update.greasyfork.org/scripts/433607/Menu%20template%20for%20your%20script.user.js
-// @updateURL https://update.greasyfork.org/scripts/433607/Menu%20template%20for%20your%20script.meta.js
+// @downloadURL https://github.com/Voidb3rg/iiQ-Tools/blob/main/iiQ-Toolbox/iiQ-Toolbox-direct.user.js
+// @updateURL https://github.com/Voidb3rg/iiQ-Tools/blob/main/iiQ-Toolbox/iiQ-Toolbox-direct.user.js
 // ==/UserScript==
 
 /* Setting menu */
