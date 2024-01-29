@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.6
+// @version      1.1.7
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -195,12 +195,6 @@ cursor: pointer;
 
 let js = `
 <script>
-<!--// Öffentlicher Link
-(function(public_link) {
-    var id = document.getElementById('input_Kundennummer');
-    var public_prefix = "https://app.iiq-check.de/";
-    document.getElementById("public_link").setAttribute("href", public_prefix += id);
-})();-->
 function openUrl(id)
 {
  window.location = "http://localhost/"+id
