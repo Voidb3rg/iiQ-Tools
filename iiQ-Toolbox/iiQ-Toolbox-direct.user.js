@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.7.2
+// @version      1.1.7.3
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -195,20 +195,18 @@ cursor: pointer;
 
 let js = `
 <script>
-function openUrl(id)
-{
- window.location = "https://app.iiq-check.de/"+id;
+function openUrl(id){
+ window.location = ("https://app.iiq-check.de/"+id)
 }
 
-
 // If you click outside of the menu location
-$(document).mouseup(function (e) {
+$(document).mouseup(function (e){
     let container = $(".menu--holder")
     if (container.has(e.target).length === 0 && container.css('display') == 'block'){
         container.css('opacity', '0.35')
     } else {
         container.css('opacity', '1')
-    }
+    } 
 })
 
 // Drag element
