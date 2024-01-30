@@ -87,13 +87,15 @@ class="" & id="" - I use to denote blocks, id for everything else
     <main class="menu--inner-gui">
       <passive class="menu--inner-gui-block">
         <passive id="menu--inner-gui-block-text">
-        <!-- Input Kundennummer-->
-        <form><label for="Kundennummer">Kundennummer:</label><input type="form" style="color:#000000" id="input_Kundennummer">
-        <!--Submit-Button mit öffentl. Link -->
-        <br/>
-        </form>
-        <a id="public_link">Öffentl. Link</a>
-        <a href="javascript:void(0)" onclick="openUrl(window.location)">link</a>
+        <form>Kdnr:
+<input type="number" name="kdnr" id="kdnr" style="color:#000000">
+<button onclick="public_link()" style="color:#000000">Öffentl. Link</button>
+</form>
+<br/>
+<br/>
+<p>Vorschau</p>
+<button onclick="mailer_webview()" style="color:#000000">Post-Stay</button>
+<button onclick="google_webview()" style="color:#000000">Google</button>
         </passive>
 
 
@@ -195,10 +197,23 @@ cursor: pointer;
 
 let js = `
 <script>
-function openUrl(id){
-    let k = formData.get("input_Kundennummer")
- window.location = ("https://app.iiq-check.de/"+ k)
+var preview_url = new URL(document.querySelector("#nav-right > div > div > li:nth-child(4) > a"));
+var preview_path = preview_url.pathname.split('/');
+var param_name = preview_path[2];
+
+function public_link() {
+    url = 'https://app.iiq-check.de/' + document.getElementById("kdnr").value
+    window.open(url, '_blank');
 }
+function mailer_webview() {
+let mailer_webview = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/questionnaire-notification/preview";
+window.open(mailer_webview, '_blank');
+}
+function google_webview() {
+    let google_webview = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/google-notification/preview";
+    window.open(mailer_webview, '_blank');
+    }
+
 
 // If you click outside of the menu location
 $(document).mouseup(function (e){
