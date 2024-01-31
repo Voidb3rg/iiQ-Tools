@@ -7,8 +7,8 @@
 // @match        https://app.iiq-check.de/*
 // @match        *://moomoo.io/*
 // @grant        none
-// @downloadURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox-direct.user.js
-// @updateURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox-direct.user.js
+// @downloadURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox.user.js
+// @updateURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox.user.js
 // ==/UserScript==
 
 /* Setting menu */
