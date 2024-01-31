@@ -203,20 +203,20 @@ var param_name = preview_path[2];
 
 // Öffentlichen Link mit Kundennummer generieren
 function public_link() {
-    url = 'https://app.iiq-check.de/' + document.getElementById("kdnr").value
+    let url = 'https://app.iiq-check.de/' + document.getElementById("kdnr").value;
     window.open(url, '_blank');
 }
 
 // Preview Post-Stay-Mail
 function mailer_webview() {
-let mailer_webview = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/questionnaire-notification/preview";
-window.open(mailer_webview, '_blank');
+let url = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/questionnaire-notification/preview";
+window.open(url, '_blank');
 }
 
 // Preview Post-Stay-Mail(Gmail)
 function google_webview() {
-    let google_webview = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/google-notification/preview";
-    window.open(mailer_webview, '_blank');
+    let url = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/google-notification/preview";
+    window.open(url, '_blank');
     }
 
 
