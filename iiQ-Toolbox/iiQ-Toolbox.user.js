@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.8
+// @version      1.1.9
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -89,7 +89,7 @@ class="" & id="" - I use to denote blocks, id for everything else
         <passive id="menu--inner-gui-block-text">
         <form>Kdnr:
 <input type="number" name="kdnr" id="kdnr" style="color:#000000">
-<button onclick="public_link()" style="color:#000000">Öffentl. Link</button>
+<button onclick="publicLink()" style="color:#000000">Öffentl. Link</button>
 </form>
 <br/>
 <br/>
@@ -197,27 +197,36 @@ cursor: pointer;
 
 let js = `
 <script>
-var preview_url = new URL(document.querySelector("#nav-right > div > div > li:nth-child(4) > a"));
-var preview_path = preview_url.pathname.split('/');
-var param_name = preview_path[2];
+
+// Public Param Name aus Preview-URL holen
+function getParamName() {
+    let url = new URL(document.querySelector("#nav-right > div > div > li:nth-child(4) > a"));
+    if (url != null){
+        let path = preview_url.pathname.split('/');
+        let ParamName = preview_path[2];
+        return ParamName;
+        }
+}
 
 // Öffentlichen Link mit Kundennummer generieren
-function public_link() {
-    let url = 'https://app.iiq-check.de/' + document.getElementById("kdnr").value;
-    window.open(url, '_blank');
+
+function publicLink() {
+    window.open(('https://app.iiq-check.de/' + document.getElementById("kdnr").value), '_blank');
 }
+
+
 
 // Preview Post-Stay-Mail
 function mailer_webview() {
-let url = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/questionnaire-notification/preview";
-window.open(url, '_blank');
+window.open(("https://app.iiq-check.de/public/mailer-webview/" + getParamName() + "/questionnaire-notification/preview"), '_blank');
 }
 
 // Preview Post-Stay-Mail(Gmail)
 function google_webview() {
-    let url = "https://app.iiq-check.de/public/mailer-webview/" + param_name + "/google-notification/preview";
+    let url = "https://app.iiq-check.de/public/mailer-webview/" + getParamName() + "/google-notification/preview";
     window.open(url, '_blank');
     }
+
 
 
 // If you click outside of the menu location
@@ -272,7 +281,6 @@ function dragElement(elmnt) {
         document.onmouseup = null
         document.onmousemove = null
     }
-}
 </script>
 `
 
