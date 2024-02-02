@@ -1,6 +1,7 @@
-/* Create menu CSS code */
+/* Create menu CSS code 
 
 let css = `
+*/
 <style>
 /*
 . - use for class
@@ -83,4 +84,4 @@ box-sizing: border-box;
 cursor: pointer;
 }
 </style>
-`
+

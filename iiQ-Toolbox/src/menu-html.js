@@ -1,5 +1,5 @@
-/* Create menu HTML code */
-const html = `
+/* Create menu HTML code 
+const html = `*/
 <!--
 <main></main> & <passive></passive> - are not embedded tags in HTML.
 I use this to denote the significance of the blocks.
@@ -30,4 +30,3 @@ class="" & id="" - I use to denote blocks, id for everything else
     </main>
   </main>
 </main>
-`

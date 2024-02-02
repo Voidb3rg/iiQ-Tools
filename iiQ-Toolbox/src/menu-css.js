@@ -56,4 +56,4 @@ menu = new Proxy(menu, {
             throw new Error(`Prop: ${prop} not defined in ${target}`)
         }
     }
-});
+})
