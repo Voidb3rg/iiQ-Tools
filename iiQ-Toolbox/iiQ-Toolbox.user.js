@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      1.1.9
+// @version      2024-02-02
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
-// @author       00100110#6361
+// @author       Micha
 // @match        https://app.iiq-check.de/*
-// @match        *://moomoo.io/*
 // @grant        none
 // @downloadURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox.user.js
 // @updateURL https://github.com/Voidb3rg/iiQ-Tools/raw/main/iiQ-Toolbox/iiQ-Toolbox.user.js
