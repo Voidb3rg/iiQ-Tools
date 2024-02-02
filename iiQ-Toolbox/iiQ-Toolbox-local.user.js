@@ -5,13 +5,10 @@
 // @match        https://app.iiq-check.de/*
 // @grant        none
 // @description  Script has to be stored at Path below. MacOS: change @require to file:///path/to/userscript.user.js
-// @updateURL      file://"C:\Github\Repositories\iiQ-Tools\iiQ-Toolbox\iiQ-Toolbox-local.user.js"
-// @require      menu-css.js
-// @require      menu-html.js
-// @require      menu-styles.js
-// @include      
-// @include      
-
+// @updateURL    file://"C:\Github\Repositories\iiQ-Tools\iiQ-Toolbox\iiQ-Toolbox-local.user.js"
+// @require      https://raw.githubusercontent.com/Voidb3rg/iiQ-Tools/main/iiQ-Toolbox/src/menu-css.js
+// @require      https://raw.githubusercontent.com/Voidb3rg/iiQ-Tools/main/iiQ-Toolbox/src/menu-html.js
+// @require      https://raw.githubusercontent.com/Voidb3rg/iiQ-Tools/main/iiQ-Toolbox/src/menu-styles.js
 // ==/UserScript==
 
 /* Create menu JS code */
