@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         iiQ-Toolbox-local
 // @namespace    https://github.com/Voidb3rg/iiQ-Tools
-// @version      2024-02-02-alpha1
+// @version      2024-02-02-alpha4
 // @match        https://app.iiq-check.de/*
-// @grant        none
+// @grant        GM_getResourceText
 // @description  Script has to be stored at Path below. MacOS: change @require to file:///path/to/userscript.user.js
+// @downloadURL  file://C:\Github\Repositories\iiQ-Tools\iiQ-Toolbox\iiQ-Toolbox-local.user.js
 // @updateURL    file://C:\Github\Repositories\iiQ-Tools\iiQ-Toolbox\iiQ-Toolbox-local.user.js
 // @resource     https://raw.githubusercontent.com/Voidb3rg/iiQ-Tools/main/iiQ-Toolbox/src/menu-css.js
 // @resource     https://raw.githubusercontent.com/Voidb3rg/iiQ-Tools/main/iiQ-Toolbox/src/menu-html.js
@@ -12,6 +13,7 @@
 // ==/UserScript==
 
 /* Create menu JS code below */
+
 
 let js = `
 <script>
@@ -101,6 +103,9 @@ function dragElement(elmnt) {
     }
 </script>
 `
+
+const html = GM_getResourceText("menu-html.js");
+const css = GM_getResourceText("menu-styles.js");
 
 /* Add menu in body */
 $('body').append(html, css, js)
