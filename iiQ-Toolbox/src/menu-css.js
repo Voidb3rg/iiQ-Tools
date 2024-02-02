@@ -1,6 +1,6 @@
-/* Setting menu */
+/* Setting menu 
 
-let menu = {
+let menu =*/ {
     opacity: 1,
     position: {
         relative: `relative`,
