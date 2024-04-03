@@ -1,7 +1,11 @@
 // ==UserScript==
 // @name         iiQ-Toolbox-test
 // @namespace    none
+<<<<<<< HEAD
+// @version      2024-04-03.1
+=======
 // @version      2024-02-09
+>>>>>>> d2b7ad43783191a93d7f601de36c2fba1cb527a6
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       00100110#6361
 // @match        https://app.iiq-check.de/*
@@ -10,7 +14,10 @@
 // ==/UserScript==
 
 /* Setting menu */
+<<<<<<< HEAD
+=======
 //debugger
+>>>>>>> d2b7ad43783191a93d7f601de36c2fba1cb527a6
 let menu = {
     opacity: 1,
     position: {
@@ -199,7 +206,18 @@ cursor: pointer;
 
 
 /* Create menu JS code */
+<<<<<<< HEAD
+
+let js = `
+<script>
+
+
+
+// Public Param Name aus Preview-URL holen
+function getParamName() {
+=======
 /* function getParamName() {
+>>>>>>> d2b7ad43783191a93d7f601de36c2fba1cb527a6
     let url = new URL(document.querySelector("#nav-right > div > div > li:nth-child(4) > a"));
     if (url != null){
         let path = url.pathname.split('/');
