@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iiQ-Toolbox
 // @namespace    none
-// @version      2024-02-02
+// @version      2024-04-03.1
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
 // @author       Micha
 // @match        https://app.iiq-check.de/*
@@ -11,7 +11,6 @@
 // ==/UserScript==
 
 /* Setting menu */
-
 let menu = {
     opacity: 1,
     position: {
@@ -197,6 +196,8 @@ cursor: pointer;
 let js = `
 <script>
 
+
+
 // Public Param Name aus Preview-URL holen
 function getParamName() {
     let url = new URL(document.querySelector("#nav-right > div > div > li:nth-child(4) > a"));
@@ -235,7 +236,7 @@ $(document).mouseup(function (e){
         container.css('opacity', '0.35')
     } else {
         container.css('opacity', '1')
-    } 
+    }
 })
 
 // Drag element
@@ -284,7 +285,7 @@ function dragElement(elmnt) {
 `
 
 /* Add menu in body */
-$('body').append(html, css, js)
+//$('body').append(html, css, js)
 
 /* Add toggler for menu */
 let openMenu = true
@@ -299,3 +300,67 @@ document.addEventListener("keydown", function(event) {
         }
     }
 })
+
+class iiQCheckHotel {
+    // Instanz Variablen
+    id    = ''
+    html  = ''
+
+    // Konstruktor XD
+    constructor(id) {
+      this.id = id;
+      this.url = `https://app.iiq-check.de/admin/hotels/${this.id}/edit`
+      this.fetchAdminEditPageAndParse();
+    }
+
+    fetchAdminEditPageAndParse() {
+      jQuery.get(this.url)
+        .done((response) => {
+          let parser = new DOMParser();
+          this.html = parser.parseFromString(response, 'text/html');
+          this.insertEmailToNavigation()
+        })
+    }
+
+    insertEmailToNavigation() {
+      let target_ele = document.querySelector('#topbar .container-fluid');
+      let email_ele = document.createElement('h4');
+      email_ele.innerText = this.email;
+      target_ele.insertBefore(email_ele, null);
+    }
+
+    // getter
+    get id() {
+      return this.id;
+    }
+
+    get email() {
+      return this.html.getElementById('hotel_email').value;
+    }
+
+    get city() {
+      return this.html.getElementById('hotel_city').value;
+    }
+
+    get street() {
+      return this.html.getElementById('hotel_address').value;
+    }
+  }
+
+
+$( document ).ready(function() {
+    // auslesen der Hotel ID
+    let regex = /\d+/ ;
+    let current_hotel_id = document.getElementById('hotel-id').innerText.match(regex)[0]
+
+    // Sinn und Zweck des folgenden Codes ist nur dann ein neues iiQCheckHotel zu bilden
+    // wenn es bisher keins gibt oder sich die ID ändert.
+    try {
+      if (currentiiQCheckHotel.id != current_hotel_id) {
+        var currentiiQCheckHotel = new iiQCheckHotel(current_hotel_id);
+      }
+    } catch {
+      var currentiiQCheckHotel = new iiQCheckHotel(current_hotel_id);
+    }
+
+  })
