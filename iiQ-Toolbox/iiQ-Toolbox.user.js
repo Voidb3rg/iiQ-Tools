@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         iiQ-Toolbox-test
+// @name         iiQ-Toolbox
 // @namespace    none
 // @version      2024-04-03.1
 // @description  I just did it because I'm bored... How you will use this menu depends on you! I did it for the developers of cheats on Moo Moo.io, but it can be used on any game.
