@@ -1,0 +1,64 @@
+/*
+	Author: Alexandru Edward Balaj
+	Date: 15/07/2021
+	Project: Simple DeepL API Integration
+	License: MIT License
+	File name: style.css
+	File description: Stylesheet for the visual interface of the API.
+*/
+
+/*
+	The main layout of the page, has its main form named layout,
+	which has its width is set to 50% of the width of the page,
+	and the margins to "0 auto" so that it will always be center aligned.
+*/
+#layout {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+}
+
+/*
+	The source element has a margin of "1em 0",
+	so that it gives space around the elements,
+	such that the page does not look cramped.
+*/
+#source {
+	display: block;
+	margin: 1em 0;
+}
+
+/*
+	The destination element has a margin of "1em 0",
+	so that it gives space around the elements,
+	such that the page does not look cramped.
+*/
+#destination {
+	display: block;
+	margin: 1em 0;
+}
+
+/*
+	The text area allows for long words to be split,
+	so that they fit well in the textarea, while also maintaining,
+	a constant width of 100%, and a minimum height of 10em.
+*/
+textarea {
+	word-wrap: break-word;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 10em;
+}
+
+
+/*
+	The select allows for the languages menu, 
+	to have a constant width of 10em,
+	so that all language names fit, 
+	and also a margin around it, so to not loop cramped.
+*/
+select {
+	display: block;
+	width: 10em;
+	margin: 1em 0;
+}

@@ -1,0 +1,91 @@
+<!--
+	Author: Alexandru Edward Balaj
+	Date: 15/07/2021
+	Project: Simple DeepL API Integration
+	License: MIT License
+	File name: index.html
+	File description: HTML page which is the main component of the API integration 
+					  and makes use of the visual interface (style.css) and the logic (API-DeepL.js).
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Title of the page. -->
+	<title>DeepL API Translation</title>
+	<!-- Additional files such as styles and scripts. -->
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="API-DeepL.js"></script>
+</head>
+<body>
+	<!-- Keeps all elements in a well laid out form. -->
+	<form id="layout">
+		<!-- Source language part, also kept in its own element. -->
+		<div id="source">
+			<label>Source Language:</label>
+			<!-- Since English is the only option, it will default to it. -->
+			<select id="source-language" name="source-language">
+				<option value="EN">English</option>
+			</select>
+		
+			<textarea type="text" id="original-text"></textarea>
+		</div>
+		
+		<!-- Uses the translateText() function in the API-DeepL.js file to parse the input, s
+			 end it for translation, and then parse the response. -->
+		<input type="button" id="translate" onclick="translateText()" value="Translate">
+		</br>
+		
+		<!-- Destination language part, also kept in its own element. -->
+		<div id="destination">
+			<!--label>Destination Language:</label-->
+			<!-- Since there are more destination languages, and they are all sorted in alphabetical order, 
+			     Bulgarian is the default one. -->
+			<!--select id="destination-language" name="destination-language">
+				<option value="BG">Bulgarian</option>
+				<option value="ZH">Chinese</option>
+				<option value="CS">Czech</option>
+				<option value="DA">Danish</option>
+				<option value="NL">Dutch</option>
+				<option value="EN-US">English (American)</option>
+				<option value="EN-GB">English (British)</option>
+				<option value="EN">English (Others)</option>
+				<option value="ET">Estonian</option>
+				<option value="FI">Finnish</option>
+				<option value="FR">French</option>
+				<option value="DE">German</option>
+				<option value="EL">Greek</option>
+				<option value="HU">Hungarian</option>
+				<option value="IT">Italian</option>
+				<option value="JA">Japanese</option>
+				<option value="LV">Latvian</option>
+				<option value="LT">Lithuanian</option>
+				<option value="PL">Polish</option>
+				<option value="PT-PT">Portuguese (Portugal)</option>
+				<option value="PT-BR">Portuguese (Brazilian)</option>
+				<option value="PT">Portuguese (Others)</option>
+				<option value="RO">Romanian</option>
+				<option value="RU">Russian</option>
+				<option value="SK">Slovak</option>
+				<option value="SL">Slovenian</option>
+				<option value="ES">Spanish</option>
+				<option value="SV">Swedish</option-->
+
+		
+				
+			<!--/select-->
+
+				<input type="text" id="result-en" name="EN" placeholder="EN-GB" readonly><br/>
+				<input type="text" id="result-fr" name="FR" placeholder="FR" readonly><br/>
+				<input type="text" id="result-it" name="IT" placeholder="IT" readonly><br/>
+				<input type="text" id="result-es" name="ES" placeholder="ES" readonly><br/>
+				<input type="text" id="result-da" name="DA" placeholder="DA" readonly><br/>
+				<input type="text" id="result-sv" name="SV" placeholder="SV" readonly><br/>
+				<input type="text" id="result-nl" name="NL" placeholder="NL" readonly><br/>
+		
+			<!--textarea type="text" id="translated-text"></textarea-->
+		</div>
+		<p>Source: https://github.com/EdwardBalaj/Simple-DeepL-API-Integration</p>
+	</form>
+</body>
+</html>
