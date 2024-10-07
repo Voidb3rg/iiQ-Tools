@@ -21,10 +21,15 @@ var AUTH_KEY = "62c74291-aefc-4d82-bf49-929fceff2d23:fx";
 
 /*	
 	Since the specifications required for the website,
-	to accept only English text, the source language is coded here,
+	to accept only German text, the source language is coded here,
 	so that in the future, if required this could be easily changed.
 */
 var SOURCE_LANG = "DE";
+
+/*
+	Define target languages needed for the questionnaire.
+*/
+const lang = ['DA', 'EN-GB','ES', 'FR', 'IT',  'NL', 'SV'];
 
 /* 	
 	According to XMLHttpRequest specifications, when the request is done,
@@ -39,9 +44,19 @@ var STATUS_OK = 200;
 */
 var xmlHTMLRequest = new XMLHttpRequest();
 
+var result = [];
+
+const response = Object.create(lang);
+
+
+
+
+
+
 /*
 	Setup function for creating a request, designed as a module, according to DeepL API specifications.
 */
+
 function setup() {
 	xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
 
@@ -68,15 +83,15 @@ function prepareText(original_text) {
 function translateText() {
 	setup();
 	
-	var target_language = document.getElementById("destination-language").value;
+	let target_language = document.getElementById("destination-language").value;
 	
-	var original_text = document.getElementById("original-text").value;
+	let original_text = document.getElementById("original-text").value;
 	
-	original_text_lines = prepareText(original_text);
+	let original_text_lines = prepareText(original_text);
 	
 	// Makes a request with every line, as a new text to translate.
-	var request = "";
-	for(var i = 0; i < original_text_lines.length; i++) {
+	let request = "";
+	for(let i = 0; i < original_text_lines.length; i++) {
 		request += "&text=" + original_text_lines[i];
 	}
 	
@@ -84,11 +99,11 @@ function translateText() {
 		if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
 			if (xmlHTMLRequest.status === 200) {
 				// Uses JSON to parse the response.
-				var result = JSON.parse(xmlHTMLRequest.responseText);
+				let result = JSON.parse(xmlHTMLRequest.responseText);
 				
 				// Recreates the response as one text, which kept its original layout.
-				var translated_text = "";
-				for(var i = 0; i < result.translations.length; i++) {
+				let translated_text = "";
+				for(let i = 0; i < result.translations.length; i++) {
 					translated_text += result.translations[i].text;
 					translated_text += "\n";
 				}
@@ -97,7 +112,49 @@ function translateText() {
 			}
 		}
 	};
+
+
 	
 	// Send the request to the server for translation.
 	xmlHTMLRequest.send("auth_key=" + AUTH_KEY + request + "&source_lang=" + SOURCE_LANG + "&target_lang=" + target_language);
+}
+
+function translate() {
+	
+	let original = document.getElementById("original-text").value;
+	//prepareText(original_text);
+	let request = "";
+	let translated_text;
+
+
+	for(i=0; i<lang.length; i++ ) {
+		setup();
+  		console.log(lang[i]);
+		  request += "&text=" + original;
+
+		  xmlHTMLRequest.onload = function () {
+			if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
+				if (xmlHTMLRequest.status === 200) {
+					// Uses JSON to parse the response.
+					let result = JSON.parse(xmlHTMLRequest.responseText);
+					
+					// Recreates the response as one text, which kept its original layout.
+					let translated_text = "";
+					for(let i = 0; i < result.translations.length; i++) {
+						translated_text += result.translations[i].text;
+						translated_text += "\n";
+					}
+			
+					document.getElementById("result-" + lang[i]).value = translated_text;
+				}
+			}
+		};
+		xmlHTMLRequest.send("auth_key=" + AUTH_KEY + request + "&source_lang=DE" + "&target_lang=" + lang[i]);
+
+  result.push({
+	language: lang[i],
+	result: translated_text
+})
+//console.log(result.language);
+	}
 }
