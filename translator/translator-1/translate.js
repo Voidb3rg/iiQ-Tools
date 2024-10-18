@@ -25,17 +25,17 @@ function clickHandler() {
 
 
 //buttonTranslate.addEventListener("click", clickHandler); 
-// Adding the event listener click
+//Adding the event listener click
 
-/* const url = "https://api-free.deepl.com/v2/translate";
+ const url = "https://api-free.deepl.com/v2/translate";
 
-const options = {
+ const options = {
   headers: {
     Authorization: DeepL-Auth-Key 62c74291-aefc-4d82-bf49-929fceff2d23:fx,
 	Content-Type: application/json
   }
 };
 
-fetch(url, options)
+/*fetch(url, options)
   .then( res => res.json() )
-  .then( data => console.log(data) ); */
+  .then( data => console.log(data) );*/
