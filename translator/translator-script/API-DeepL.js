@@ -39,11 +39,11 @@ const lang = ["DA", "EN-GB", "ES", "FR", "IT", "NL", "SV"];
 var READYSTATE_DONE = 4;
 var STATUS_OK = 200;
 
+//var xmlHTMLRequest = new XMLHttpRequest();
+
 /* 	
 	Creates an xmlHttpRequest object as soon as the page has loaded.
 */
-var xmlHTMLRequest = new XMLHttpRequest();
-
 var result = [];
 
 const response = Object.create(lang);
@@ -52,17 +52,19 @@ const response = Object.create(lang);
 	Setup function for creating a request, designed as a module, according to DeepL API specifications.
 */
 
-function setup() {
-  xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
-
-  xmlHTMLRequest.setRequestHeader("Accept", "*/*");
-  xmlHTMLRequest.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded"
-  );
-  // xmlHTMLRequest.setRequestHeader("User-Agent", "DeepL API Implementation");
-  // xmlHTMLRequest.setRequestHeader("Content-Length", null);
-}
+//function setup() {
+//  
+//
+//  xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
+//
+//  xmlHTMLRequest.setRequestHeader("Accept", "*/*");
+//  xmlHTMLRequest.setRequestHeader(
+//    "Content-Type",
+//    "application/x-www-form-urlencoded"
+//  );
+//  // xmlHTMLRequest.setRequestHeader("User-Agent", "DeepL API Implementation");
+//  // xmlHTMLRequest.setRequestHeader("Content-Length", null);
+//}
 
 /*
 	Prepare text function used to parse, or arrange text, designed as a module.
@@ -78,8 +80,15 @@ function prepareText(original_text) {
 	Translate text function which uses all the other modules, in order to create a request,
 	which is sent to the DeepL API to translate, and then display the result, designed as a module.
 */
-async function translateText() {
-  setup();
+function translateText() {
+  let xmlHTMLRequest = new XMLHttpRequest();
+  //setup();
+  xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
+  xmlHTMLRequest.setRequestHeader("Accept", "*/*");
+  xmlHTMLRequest.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
 
   let target_language =  "en" //document.getElementById("destination-language").value;
 
@@ -132,7 +141,7 @@ function sleep(milliseconds) {
   }
 }
 
-async function translate() {
+/* async function translate() {
   let original = document.getElementById("original-text").value;
 
   //prepareText(original_text);
@@ -142,7 +151,7 @@ async function translate() {
   for (i = 0; i < lang.length; i++) {
     setup();
     console.log(lang[i]);
-    let request = "&text=" + original;
+    let request = "&text=hallo welt!" //+ original;
 
     xmlHTMLRequest.onload = function () {
       if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
@@ -184,4 +193,4 @@ async function translate() {
     //code before the pause
     //sleep(2000);
   }
-}
+}*/
