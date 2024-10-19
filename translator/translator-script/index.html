@@ -28,12 +28,12 @@
 				<option value="EN">English</option>
 			</select>
 		
-			<textarea type="text" id="original-text"></textarea>
+			<textarea type="text" id="original-text">Hallo Welt!</textarea>
 		</div>
 		
 		<!-- Uses the translateText() function in the API-DeepL.js file to parse the input, s
 			 end it for translation, and then parse the response. -->
-		<input type="button" id="translate" onclick="translateText()" value="Translate">
+		<input type="button" id="translate" onclick="translateLoop()" value="Translate">
 		</br>
 		
 		<!-- Destination language part, also kept in its own element. -->

@@ -13,6 +13,7 @@
 	was to create a module oriented way,
 	to help with futures updates and allow for easier error tracking.
 */
+var param = "en";
 
 /*
 	Authentication key given in the specifications.
@@ -21,15 +22,12 @@ var AUTH_KEY = "62c74291-aefc-4d82-bf49-929fceff2d23:fx";
 
 /*	
 	Since the specifications required for the website,
-	to accept only German text, the source language is coded here,
+	to accept only English text, the source language is coded here,
 	so that in the future, if required this could be easily changed.
 */
 var SOURCE_LANG = "DE";
+const lang = ["da", "en", "es", "fr", "it", "nl", "sv"];
 
-/*
-	Define target languages needed for the questionnaire.
-*/
-const lang = ["DA", "EN-GB", "ES", "FR", "IT", "NL", "SV"];
 
 /* 	
 	According to XMLHttpRequest specifications, when the request is done,
@@ -42,26 +40,18 @@ var STATUS_OK = 200;
 /* 	
 	Creates an xmlHttpRequest object as soon as the page has loaded.
 */
-var xmlHTMLRequest = new XMLHttpRequest();
 
-var result = [];
-
-const response = Object.create(lang);
 
 /*
 	Setup function for creating a request, designed as a module, according to DeepL API specifications.
 */
+function setup(xmlHTMLRequest) {
+	xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
 
-function setup() {
-  xmlHTMLRequest.open("POST", "https://api-free.deepl.com/v2/translate", true);
-
-  xmlHTMLRequest.setRequestHeader("Accept", "*/*");
-  xmlHTMLRequest.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded"
-  );
-  // xmlHTMLRequest.setRequestHeader("User-Agent", "DeepL API Implementation");
-  // xmlHTMLRequest.setRequestHeader("Content-Length", null);
+	xmlHTMLRequest.setRequestHeader("Accept", "*/*");
+	xmlHTMLRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	// xmlHTMLRequest.setRequestHeader("User-Agent", "DeepL API Implementation");
+	// xmlHTMLRequest.setRequestHeader("Content-Length", null);
 }
 
 /*
@@ -71,114 +61,56 @@ function setup() {
 	which would have otherwise been lost because of the way DeepL accepts multiple sentences.
 */
 function prepareText(original_text) {
-  return original_text.split("\n");
+	return original_text.split("\n");
 }
 
 /*
 	Translate text function which uses all the other modules, in order to create a request,
 	which is sent to the DeepL API to translate, and then display the result, designed as a module.
 */
-function translateText() {
-  setup();
+function translateText(target) {
+  let xmlHTMLRequest = new XMLHttpRequest();
+	setup(xmlHTMLRequest);
+	
+	//var target_language = document.getElementById("destination-language").value;
+	var target_lang = 'es';
+	var original_text = document.getElementById("original-text").value;
+	
+	original_text_lines = prepareText(original_text);
+	
+	// Makes a request with every line, as a new text to translate.
+	var request = "";
+	for(var i = 0; i < original_text_lines.length; i++) {
+		request += "&text=" + original_text_lines[i];
+	}
+	
+	xmlHTMLRequest.onload = function () {
+		if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
+			if (xmlHTMLRequest.status === 200) {
+				// Uses JSON to parse the response.
+				var result = JSON.parse(xmlHTMLRequest.responseText);
+				
+				// Recreates the response as one text, which kept its original layout.
+				var translated_text = "";
+				for(var i = 0; i < result.translations.length; i++) {
+					translated_text += result.translations[i].text;
+					translated_text += "\n";
+				}
+		
+				document.getElementById("result-" + target).value = translated_text;
+        return translated_text;
+			}
+		}
+	};
+	
+	// Send the request to the server for translation.
+	xmlHTMLRequest.send("auth_key=" + AUTH_KEY + request + "&source_lang=" + SOURCE_LANG + "&target_lang=" + target);
 
-  let target_language = document.getElementById("destination-language").value;
+};
 
-  let original_text = document.getElementById("original-text").value;
-
-  let original_text_lines = prepareText(original_text);
-
-  // Makes a request with every line, as a new text to translate.
-  let request = "";
-  for (let i = 0; i < original_text_lines.length; i++) {
-    request += "&text=" + original_text_lines[i];
-  }
-
-  xmlHTMLRequest.onload = function () {
-    if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
-      if (xmlHTMLRequest.status === 200) {
-        // Uses JSON to parse the response.
-        let result = JSON.parse(xmlHTMLRequest.responseText);
-
-        // Recreates the response as one text, which kept its original layout.
-        let translated_text = "";
-        for (let i = 0; i < result.translations.length; i++) {
-          translated_text += result.translations[i].text;
-          translated_text += "\n";
-        }
-
-        document.getElementById("translated-text").value = translated_text;
-      }
-    }
-  };
-
-  // Send the request to the server for translation.
-  xmlHTMLRequest.send(
-    "auth_key=" +
-      AUTH_KEY +
-      request +
-      "&source_lang=" +
-      SOURCE_LANG +
-      "&target_lang=" +
-      target_language
-  );
+function translateLoop(){
+for (i = 0; i < lang.length; i++){
+  console.log(lang[i]);
+translateText(lang[i]);
 }
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if (new Date().getTime() - start > milliseconds) {
-      break;
-    }
-  }
-}
-
-function translate() {
-  let original = document.getElementById("original-text").value;
-
-  //prepareText(original_text);
-  let translated_text;
-  var translated_string;
-
-  for (i = 0; i < lang.length; i++) {
-    setup();
-    console.log(lang[i]);
-    let request = "&text=" + original;
-
-    xmlHTMLRequest.onload = function () {
-      if (xmlHTMLRequest.readyState === xmlHTMLRequest.DONE) {
-        if (xmlHTMLRequest.status === 200) {
-          // Uses JSON to parse the response.
-          let result = JSON.parse(xmlHTMLRequest.responseText);
-
-          // Recreates the response as one text, which kept its original layout.
-          translated_text = "";
-          for (let i = 0; i < result.translations.length; i++) {
-            translated_text += result.translations[i].text;
-            translated_text += "\n";
-            translated_string = translated_text;
-            console.log("translated_string: " + translated_string);
-            console.log("translated_text: " + translated_text);
-          }
-
-          //document.getElementById("result-" + lang[i]).value = translated_text;
-        }
-      }
-    };
-    xmlHTMLRequest.send(
-      "auth_key=" +
-        AUTH_KEY +
-        request +
-        "&source_lang=DE" +
-        "&target_lang=" +
-        lang[i]
-    );
-    console.log(lang[i] + ": " + translated_string);
-    result.push({
-      language: lang[i],
-      result: translated_string,
-    });
-    //console.log(result.language);
-    //code before the pause
-    sleep(2000);
-  }
 }
