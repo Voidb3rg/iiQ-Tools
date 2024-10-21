@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>DeepL Translator</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="mb-3">
+              <label for="translationText" class="form-label">Text</label>
+              <input type="text" class="form-control" id="translationText">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-primary" onclick="fetchTranslation()">Üersetzten</button>
+            </div>
+
+            <div class="col">
+              <button class="btn btn-warning" onclick="clearTranslationInputs()">Löschen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="container mt-5" id="TranslationInputs">
+
+      </div>
+    </main>
+    <script src="" async defer></script>
+  </body>
+  <script>
+    const languages = ['EN', 'IT', 'ES', 'NL', 'DA', 'ET', 'FR']
+
+    class TranslationInput extends HTMLInputElement {
+      constructor() {
+        super();
+        this.classList.add('form-control')
+        this.disabled = true
+      }
+    }
+
+    customElements.define("translation-input", TranslationInput, {extends: "input"})
+
+    function clearTranslationInputs() {
+      let container   = document.getElementById('TranslationInputs');
+      container.innerHTML = '';
+    }
+
+    function addTranslationInput(lang) {
+      let input_field = document.createElement("input",  {is: 'translation-input'});
+      let container   = document.getElementById('TranslationInputs');
+      container.appendChild(input_field);
+    }
+
+    function postToDeepl(target_lang) {
+      let textElement = document.getElementById('translationText')
+      let text = textElement.value
+
+      return fetch("https://api-free.deepl.com/v2/translate", {
+        method: "POST",
+        body: JSON.stringify({
+          text: [text],
+          target_lang: target_lang
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Authorization": "DeepL-Auth-Key [62c74291-aefc-4d82-bf49-929fceff2d23:fx]",
+          "mode": "no-cors"
+        }
+    });
+    };
+
+    function fetchTranslation() {
+      clearTranslationInputs()
+      
+      postToDeepl()
+        const finalString = ""
+        postToDeepl()
+          .then((response) => {
+            if (!response.ok) {
+              alert('HTTP !200 from DeepL!')
+            }
+
+            debugger
+            //TOOD: implement!
+          })
+    }
+  </script>
+</html>
