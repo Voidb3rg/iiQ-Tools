@@ -8,6 +8,26 @@ class hotel:
     def __init__(self, id, url):
         self.id = id
         self.url = url
+    
+    def widgetCheck(self.url):
+    page = requests.get(hotel_url)
+    # print(page)
+    soup = BeautifulSoup(page.text, 'html.parser')
+    #scripts = soup.find_all(
+    #    'script', attrs={'src'})
+    ca = soup.select("script[src*=customer]")
+    iiq = soup.select('iframe[id*=iiqcheck]')
+    print(hotel_url)
+    if ca:
+        print('ca')
+        return('ca')
+    
+    elif iiq:
+        print('iiq')
+        return('iiq')
+    else:
+        print('Nichts gefunden!')
+        return('Nichts gefunden!')
 
 urlList = []
 
